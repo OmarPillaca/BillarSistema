@@ -1,0 +1,159 @@
+/* reportes.css — Rejilla de gráficos y estilos SVG/hechos a mano */
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--sp-4);
+    margin-top: var(--sp-5);
+}
+
+.chart {
+    min-height: 160px;
+    width: 100%;
+}
+
+.chart-vacio {
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: var(--fs-sm);
+    padding: var(--sp-5) 0;
+    text-align: center;
+}
+
+.chart-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.chart-value {
+    font-size: 9px;
+    fill: var(--color-text-muted);
+}
+
+.chart-label {
+    font-size: 10px;
+    fill: var(--color-text-muted);
+}
+
+/* Dona */
+.donut {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    flex-wrap: wrap;
+}
+
+.donut__svg {
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+}
+
+.donut__center {
+    font-size: 11px;
+    fill: var(--color-text-muted);
+}
+
+.donut__center--valor {
+    font-size: 13px;
+    font-weight: 700;
+    fill: var(--color-text);
+}
+
+.donut__leyenda {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 140px;
+    font-size: var(--fs-sm);
+}
+
+.donut__leyenda li {
+    display: grid;
+    grid-template-columns: 12px 1fr auto;
+    align-items: center;
+    gap: 8px;
+}
+
+.donut__punto {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+}
+
+.donut__valor {
+    color: var(--color-text-muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* Barras horizontales */
+.hbars {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hbars__item {
+    display: grid;
+    grid-template-columns: 24px minmax(70px, auto) 1fr auto;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--fs-sm);
+}
+
+.hbars__rank {
+    color: var(--color-text-muted);
+    text-align: right;
+    font-family: var(--font-mono);
+}
+
+.hbars__nombre {
+    font-weight: var(--fw-semibold);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hbars__barra-wrap {
+    background: var(--color-surface-2);
+    border-radius: var(--radius-full);
+    height: 10px;
+    overflow: hidden;
+}
+
+.hbars__barra {
+    display: block;
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: var(--radius-full);
+}
+
+.hbars__valor {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    color: var(--color-text-muted);
+}
+
+.hbars__valor small {
+    color: var(--color-text-muted);
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .hbars__item {
+        grid-template-columns: 20px 1fr auto;
+    }
+
+    .hbars__barra-wrap {
+        grid-column: 1 / -1;
+    }
+}

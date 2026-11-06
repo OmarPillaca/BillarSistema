@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="claro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gastos · Sistema de Billar</title>
+
+    <!-- Aplicación temprana del tema (evita parpadeo al abrir) -->
+    <script>
+        (function () {
+            try {
+                var cfg = JSON.parse(localStorage.getItem('billar:config') || '{}');
+                var tema = cfg && cfg.tema;
+                if (tema !== 'oscuro' && tema !== 'claro') {
+                    tema = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+                        ? 'oscuro' : 'claro';
+                }
+                document.documentElement.setAttribute('data-theme', tema);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'claro');
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/themes.css">
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="gastos.css">
+</head>
+<body data-page="gastos" data-base="../../">
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <main id="main" class="main">
+        <div class="page">
+            <header class="page__header">
+                <div>
+                    <h1 class="page__title">Gastos</h1>
+                    <p class="page__subtitle" id="gastos-subtitle">Cargando gastos…</p>
+                </div>
+                <div class="page__actions">
+                    <button type="button" class="btn btn--primary" id="btn-nuevo-gasto">＋ Nuevo gasto</button>
+                </div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card stat-card--danger">
+                    <span class="stat-card__label">Total en la vista</span>
+                    <span class="stat-card__value" id="stat-total-vista">S/ 0.00</span>
+                </div>
+                <div class="stat-card stat-card--warning">
+                    <span class="stat-card__label">Este mes</span>
+                    <span class="stat-card__value" id="stat-total-mes">S/ 0.00</span>
+                </div>
+                <div class="stat-card stat-card--muted">
+                    <span class="stat-card__label">Registros</span>
+                    <span class="stat-card__value" id="stat-count">0</span>
+                </div>
+            </div>
+
+            <div class="filters-bar">
+                <div class="form-group form-group--search">
+                    <label class="form-label" for="filtro-busqueda">Buscar</label>
+                    <input class="form-input" id="filtro-busqueda" type="search" placeholder="Descripción…" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="filtro-mes">Mes</label>
+                    <input class="form-input" id="filtro-mes" type="month">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="filtro-categoria">Categoría</label>
+                    <select class="form-select" id="filtro-categoria">
+                        <option value="">Todas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="filtro-orden">Ordenar por</label>
+                    <select class="form-select" id="filtro-orden">
+                        <option value="fecha-desc">Fecha (más reciente)</option>
+                        <option value="fecha-asc">Fecha (más antigua)</option>
+                        <option value="monto-desc">Monto (mayor)</option>
+                        <option value="monto-asc">Monto (menor)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-wrap" id="gastos-table-wrap">
+                <table class="table" id="gastos-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Descripción</th>
+                            <th>Categoría</th>
+                            <th class="num">Monto</th>
+                            <th class="actions-cell">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="gastos-tbody"></tbody>
+                </table>
+            </div>
+
+            <div class="empty-state hidden" id="gastos-vacio">
+                <div class="empty-state__icon" aria-hidden="true">💸</div>
+                <p class="empty-state__title" id="gastos-vacio-titulo">Sin gastos</p>
+                <p class="empty-state__text" id="gastos-vacio-texto">Registra tu primer gasto para controlar los costos del salón.</p>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="gastos.js"></script>
+</body>
+</html>

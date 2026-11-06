@@ -1,0 +1,352 @@
+/* ============================================================
+   venta-directa.css — Catálogo táctil + panel de venta en curso
+   Solo usa variables de variables.css / themes.css.
+   ============================================================ */
+
+.vd-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
+    gap: var(--sp-5);
+    align-items: start;
+}
+
+.vd-seccion-titulo {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-semibold);
+    margin-bottom: var(--sp-3);
+}
+
+/* ---------------------- Catálogo ---------------------- */
+.vd-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--sp-3);
+}
+
+.vd-prod {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-1);
+    min-height: 88px;
+    padding: var(--sp-3) var(--sp-4);
+    text-align: left;
+    font: inherit;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.vd-prod:hover:not(:disabled) {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow);
+}
+
+.vd-prod:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.vd-prod:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.vd-prod__nombre {
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-tight);
+}
+
+.vd-prod__precio {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-primary);
+    font-weight: var(--fw-bold);
+}
+
+.vd-prod__meta {
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted);
+}
+
+.vd-prod__meta--agotado {
+    color: var(--color-danger);
+    font-weight: var(--fw-semibold);
+}
+
+/* ------------------- Venta en curso ------------------- */
+.vd-venta {
+    position: sticky;
+    top: calc(var(--topbar-h) + var(--sp-4));
+}
+
+.vd-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.vd-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--sp-1) var(--sp-3);
+    padding: var(--sp-2) var(--sp-3);
+    background: var(--color-surface-2);
+    border-radius: var(--radius-sm);
+}
+
+.vd-item__nombre {
+    font-weight: var(--fw-medium);
+    overflow-wrap: anywhere;
+}
+
+.vd-item__subtotal {
+    font-weight: var(--fw-semibold);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+}
+
+.vd-item__controles {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+}
+
+.vd-item__unit {
+    margin-left: auto;
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted);
+}
+
+.vd-qty-btn {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    font-weight: var(--fw-bold);
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+}
+
+.vd-qty-btn:hover {
+    border-color: var(--color-primary);
+}
+
+.vd-qty-btn--quitar {
+    color: var(--color-danger);
+}
+
+.vd-qty-input {
+    width: 56px;
+    text-align: center;
+    padding: var(--sp-1) var(--sp-2);
+}
+
+.vd-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: var(--sp-4);
+    padding-top: var(--sp-3);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--fs-lg);
+}
+
+.vd-total strong {
+    font-size: var(--fs-2xl);
+    font-variant-numeric: tabular-nums;
+}
+
+.vd-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--sp-3);
+}
+
+/* ---------------- Pestañas de clientes ---------------- */
+.vd-tabs {
+    display: flex;
+    gap: var(--sp-2);
+    padding: var(--sp-3) var(--sp-5) 0;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface-2);
+}
+
+.vd-tab {
+    display: flex;
+    align-items: stretch;
+    flex: 0 0 auto;
+    max-width: 200px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-bottom: none;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.vd-tab--activa {
+    border-color: var(--color-primary);
+    box-shadow: inset 0 3px 0 var(--color-primary);
+}
+
+.vd-tab__btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    min-width: 0;
+    padding: var(--sp-2) var(--sp-3);
+    font: inherit;
+    color: var(--color-text);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    text-align: left;
+}
+
+.vd-tab__btn:focus-visible,
+.vd-tab__cerrar:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+}
+
+.vd-tab__nombre {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-sm);
+}
+
+.vd-tab__total {
+    font-size: var(--fs-xs);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-muted);
+}
+
+.vd-tab--activa .vd-tab__total {
+    color: var(--color-primary);
+    font-weight: var(--fw-semibold);
+}
+
+.vd-tab__cerrar {
+    padding: 0 var(--sp-2);
+    font: inherit;
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.vd-tab__cerrar:hover {
+    color: var(--color-danger);
+}
+
+/* -------------------- Modal de cobro ------------------- */
+.vd-cobro-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--fs-sm);
+}
+
+.vd-cobro-tabla th,
+.vd-cobro-tabla td {
+    padding: var(--sp-2);
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+}
+
+.vd-cobro-tabla .num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.vd-montos-rapidos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+    margin-top: var(--sp-2);
+}
+
+.vd-vuelto {
+    margin-top: var(--sp-4);
+    padding: var(--sp-3) var(--sp-4);
+    border: 1px dashed var(--color-success);
+    border-radius: var(--radius);
+    background: var(--color-surface-2);
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-bold);
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-success);
+}
+
+.vd-vuelto--falta {
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+}
+
+.vd-pago-msg {
+    min-height: 1.4em;
+    margin-top: var(--sp-3);
+    font-size: var(--fs-sm);
+    color: var(--color-danger);
+}
+
+/* ------------------ Ventana final --------------------- */
+.vd-final-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    margin-top: var(--sp-5);
+}
+
+.vd-whatsapp {
+    margin-top: var(--sp-4);
+    padding: var(--sp-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface-2);
+}
+
+/* ----------------------- Responsive -------------------- */
+@media (max-width: 1024px) {
+    .vd-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .vd-venta {
+        position: static;
+    }
+}
+
+@media (max-width: 480px) {
+    .vd-productos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .vd-acciones .btn {
+        flex: 1;
+    }
+
+    .vd-qty-btn {
+        width: 40px;
+        height: 40px;
+    }
+}

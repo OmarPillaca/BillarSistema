@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="claro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard · Sistema de Billar</title>
+
+    <!-- Aplicación temprana del tema (evita parpadeo al abrir) -->
+    <script>
+        (function () {
+            try {
+                var cfg = JSON.parse(localStorage.getItem('billar:config') || '{}');
+                var tema = cfg && cfg.tema;
+                if (tema !== 'oscuro' && tema !== 'claro') {
+                    tema = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+                        ? 'oscuro' : 'claro';
+                }
+                document.documentElement.setAttribute('data-theme', tema);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'claro');
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/themes.css">
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body data-page="dashboard" data-base="../../">
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <main id="main" class="main">
+        <div class="page">
+            <header class="page__header">
+                <div>
+                    <h1 class="page__title">Dashboard</h1>
+                    <p class="page__subtitle" id="dash-subtitle">Resumen del salón</p>
+                </div>
+                <div class="page__actions">
+                    <a class="btn btn--primary" href="../mesas/mesas.html">🎱 Ir a mesas</a>
+                </div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card stat-card--success">
+                    <span class="stat-card__label">Ingresos hoy</span>
+                    <span class="stat-card__value" id="stat-hoy">S/ 0.00</span>
+                </div>
+                <div class="stat-card stat-card--info">
+                    <span class="stat-card__label">Ingresos del mes</span>
+                    <span class="stat-card__value" id="stat-mes">S/ 0.00</span>
+                </div>
+                <div class="stat-card stat-card--danger">
+                    <span class="stat-card__label">Gastos del mes</span>
+                    <span class="stat-card__value" id="stat-gastos">S/ 0.00</span>
+                </div>
+                <div class="stat-card stat-card--warning">
+                    <span class="stat-card__label">Utilidad del mes</span>
+                    <span class="stat-card__value" id="stat-utilidad">S/ 0.00</span>
+                </div>
+            </div>
+
+            <div class="dash-grid">
+                <section class="card">
+                    <header class="card__header">
+                        <h2 class="card__title">Estado del salón</h2>
+                    </header>
+                    <div class="card__body">
+                        <div class="kv">
+                            <div class="kv__row"><span>Mesas disponibles</span><span id="dash-disponibles">0</span></div>
+                            <div class="kv__row"><span>Mesas en uso</span><span id="dash-uso">0</span></div>
+                            <div class="kv__row"><span>Sesiones activas</span><span id="dash-activas">0</span></div>
+                            <div class="kv__row"><span>Cobros del mes (mesas y ventas directas)</span><span id="dash-cobradas">0</span></div>
+                            <div class="kv__row"><span>Productos activos</span><span id="dash-productos">0</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <header class="card__header">
+                        <h2 class="card__title">Ingresos de los últimos 7 días</h2>
+                    </header>
+                    <div class="card__body"><div class="chart" id="chart-semana"></div></div>
+                </section>
+
+                <section class="card">
+                    <header class="card__header">
+                        <h2 class="card__title">Últimas sesiones</h2>
+                    </header>
+                    <div class="card__body">
+                        <ul class="dash-ultimas" id="ultimas-sesiones"></ul>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <header class="card__header">
+                        <h2 class="card__title">Accesos rápidos</h2>
+                    </header>
+                    <div class="card__body">
+                        <div class="dash-accesos">
+                            <a class="btn btn--secondary" href="../mesas/mesas.html">🎱 Mesas</a>
+                            <a class="btn btn--secondary" href="../productos/productos.html">🛒 Productos</a>
+                            <a class="btn btn--secondary" href="../ventas/ventas.html">🧾 Historial</a>
+                            <a class="btn btn--secondary" href="../gastos/gastos.html">💸 Gastos</a>
+                            <a class="btn btn--secondary" href="../reportes/reportes.html">📈 Reportes</a>
+                            <a class="btn btn--secondary" href="../configuracion/configuracion.html">⚙️ Configuración</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="dashboard.js"></script>
+</body>
+</html>

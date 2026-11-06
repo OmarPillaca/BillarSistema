@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="claro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pruebas de venta directa · Sistema de Billar</title>
+
+    <script>
+        (function () {
+            try {
+                var cfg = JSON.parse(localStorage.getItem('billar:config') || '{}');
+                var tema = cfg && cfg.tema;
+                if (tema !== 'oscuro' && tema !== 'claro') {
+                    tema = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+                        ? 'oscuro' : 'claro';
+                }
+                document.documentElement.setAttribute('data-theme', tema);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'claro');
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="pruebas-billing.css">
+</head>
+<body>
+    <main class="tests-page">
+        <header class="tests-header">
+            <h1 class="tests-header__title">Pruebas de venta directa</h1>
+            <p class="tests-header__sub">
+                Total, vuelto, teléfono, creación con stock, validaciones, anulación, reportes,
+                enlace de WhatsApp e importación de respaldos antiguos.
+                <strong>Antes de empezar se respalda tu <code>localStorage</code> y al terminar se restaura</strong>,
+                así que tus datos reales no se pierden.
+            </p>
+            <div id="resumen" class="resumen" aria-live="polite">Ejecutando pruebas…</div>
+        </header>
+
+        <div id="grupos"></div>
+
+        <footer class="tests-footer">
+            Casos definidos en <code>tests/pruebas-venta-directa-casos.js</code>.
+        </footer>
+    </main>
+
+    <script type="module" src="pruebas-venta-directa.js"></script>
+</body>
+</html>

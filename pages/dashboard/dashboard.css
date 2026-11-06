@@ -1,0 +1,70 @@
+/* dashboard.css — Rejilla del panel principal */
+
+.dash-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--sp-4);
+    margin-top: var(--sp-5);
+}
+
+.dash-ultimas {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dash-ultimas li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--sp-3);
+    padding: 8px 10px;
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-sm);
+    flex-wrap: wrap;
+}
+
+.dash-ultimas__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.dash-ultimas__mesa {
+    font-weight: var(--fw-bold);
+}
+
+.dash-ultimas__fecha {
+    color: var(--color-text-muted);
+    font-size: var(--fs-xs);
+}
+
+.dash-ultimas__total {
+    font-variant-numeric: tabular-nums;
+    font-weight: var(--fw-semibold);
+}
+
+.dash-accesos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--sp-2);
+}
+
+.dash-accesos .btn,
+.page__actions a.btn {
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dash-ultimas__total.estado-cancelada {
+    color: var(--color-text-muted);
+    text-decoration: line-through;
+}

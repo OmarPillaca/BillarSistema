@@ -1,0 +1,37 @@
+/* configuracion.css — Complemento de la página de configuración */
+
+.cfg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--sp-5);
+    align-items: start;
+}
+
+.cfg-card--datos {
+    grid-column: 1 / -1;
+}
+
+.cfg-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+}
+
+.cfg-separador {
+    border: 0;
+    border-top: 1px dashed var(--color-border);
+}
+
+#cfg-tema button {
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .cfg-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cfg-acciones .btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="claro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos · Sistema de Billar</title>
+
+    <!-- Aplicación temprana del tema (evita parpadeo al abrir) -->
+    <script>
+        (function () {
+            try {
+                var cfg = JSON.parse(localStorage.getItem('billar:config') || '{}');
+                var tema = cfg && cfg.tema;
+                if (tema !== 'oscuro' && tema !== 'claro') {
+                    tema = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+                        ? 'oscuro' : 'claro';
+                }
+                document.documentElement.setAttribute('data-theme', tema);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'claro');
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/themes.css">
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="productos.css">
+</head>
+<body data-page="productos" data-base="../../">
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <main id="main" class="main">
+        <div class="page">
+            <header class="page__header">
+                <div>
+                    <h1 class="page__title">Productos</h1>
+                    <p class="page__subtitle" id="productos-subtitle">Cargando productos…</p>
+                </div>
+                <div class="page__actions">
+                    <button type="button" class="btn btn--primary" id="btn-nuevo-producto">＋ Nuevo producto</button>
+                </div>
+            </header>
+
+            <div class="filters-bar" role="search">
+                <div class="form-group form-group--search">
+                    <label class="form-label" for="filtro-busqueda">Buscar</label>
+                    <input class="form-input" id="filtro-busqueda" type="search" placeholder="Nombre del producto…" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="filtro-categoria">Categoría</label>
+                    <select class="form-select" id="filtro-categoria">
+                        <option value="">Todas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="filtro-estado">Estado</label>
+                    <select class="form-select" id="filtro-estado">
+                        <option value="">Todos</option>
+                        <option value="ACTIVO">Activos</option>
+                        <option value="INACTIVO">Inactivos</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="filtro-orden">Ordenar por</label>
+                    <select class="form-select" id="filtro-orden">
+                        <option value="nombre-asc">Nombre (A-Z)</option>
+                        <option value="nombre-desc">Nombre (Z-A)</option>
+                        <option value="precio-asc">Precio (menor)</option>
+                        <option value="precio-desc">Precio (mayor)</option>
+                        <option value="recientes">Más recientes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="cards-grid" id="productos-grid"></div>
+
+            <div class="empty-state hidden" id="productos-vacio">
+                <div class="empty-state__icon" aria-hidden="true">🛒</div>
+                <p class="empty-state__title" id="productos-vacio-titulo">No hay productos</p>
+                <p class="empty-state__text" id="productos-vacio-texto">Crea tu primer producto para poder venderlo en las mesas.</p>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="productos.js"></script>
+</body>
+</html>

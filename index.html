@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="claro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0; url=pages/dashboard/dashboard.html">
+    <title>Sistema de Gestión de Salón de Billar</title>
+
+    <!-- Aplicación temprana del tema (evita parpadeo al abrir) -->
+    <script>
+        (function () {
+            try {
+                var cfg = JSON.parse(localStorage.getItem('billar:config') || '{}');
+                var tema = cfg && cfg.tema;
+                if (tema !== 'oscuro' && tema !== 'claro') {
+                    tema = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+                        ? 'oscuro' : 'claro';
+                }
+                document.documentElement.setAttribute('data-theme', tema);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'claro');
+            }
+        })();
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: system-ui, sans-serif;
+            background: #0d1219;
+            color: #e6edf7;
+            text-align: center;
+            padding: 2rem;
+        }
+        a { color: #3ecf8e; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Sistema de Gestión de Salón de Billar</h1>
+        <p>Abriendo el panel…</p>
+        <p><a href="pages/dashboard/dashboard.html">Ir al dashboard</a></p>
+    </main>
+</body>
+</html>

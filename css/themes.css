@@ -1,0 +1,89 @@
+/* ============================================================
+   themes.css — Modo claro y modo oscuro
+   Todos los colores del sistema se definen aquí mediante variables.
+   ============================================================ */
+
+/* ----------------------- MODO CLARO ----------------------- */
+:root,
+:root[data-theme="claro"] {
+    color-scheme: light;
+
+    --color-primary: #177a4d;
+    --color-primary-hover: #12653f;
+    --color-primary-soft: rgba(23, 122, 77, 0.12);
+    --color-on-primary: #ffffff;
+    --color-accent: #d97706;
+
+    --color-background: #f2f5f9;
+    --color-surface: #ffffff;
+    --color-surface-2: #f0f3f8;
+
+    --color-text: #16202e;
+    --color-text-muted: #5d6b80;
+    --color-border: #dde4ee;
+
+    --color-success: #15803d;
+    --color-success-bg: #e5f6ec;
+    --color-danger: #d33f49;
+    --color-danger-bg: #fdecee;
+    --color-warning: #b45309;
+    --color-warning-bg: #fdf1de;
+    --color-info: #2563eb;
+    --color-info-bg: #e7eefe;
+
+    --color-estado-disponible: #15803d;
+    --color-estado-en-uso: #d33f49;
+    --color-estado-inactiva: #64748b;
+
+    --sidebar-bg: #ffffff;
+    --sidebar-text: #33415a;
+    --sidebar-hover: rgba(23, 122, 77, 0.08);
+    --sidebar-border: #e3e9f2;
+
+    --topbar-bg: rgba(255, 255, 255, 0.88);
+    --overlay-color: rgba(12, 18, 28, 0.5);
+}
+
+/* ----------------------- MODO OSCURO ---------------------- */
+:root[data-theme="oscuro"] {
+    color-scheme: dark;
+
+    --color-primary: #3ecf8e;
+    --color-primary-hover: #5bdda1;
+    --color-primary-soft: rgba(62, 207, 142, 0.14);
+    --color-on-primary: #08130d;
+    --color-accent: #fbbf24;
+
+    --color-background: #0d1219;
+    --color-surface: #151d28;
+    --color-surface-2: #1c2634;
+
+    --color-text: #e6edf7;
+    --color-text-muted: #94a3b8;
+    --color-border: #2a3648;
+
+    --color-success: #4ade80;
+    --color-success-bg: rgba(74, 222, 128, 0.12);
+    --color-danger: #f87171;
+    --color-danger-bg: rgba(248, 113, 113, 0.12);
+    --color-warning: #fbbf24;
+    --color-warning-bg: rgba(251, 191, 36, 0.12);
+    --color-info: #60a5fa;
+    --color-info-bg: rgba(96, 165, 250, 0.12);
+
+    --color-estado-disponible: #4ade80;
+    --color-estado-en-uso: #f87171;
+    --color-estado-inactiva: #94a3b8;
+
+    --sidebar-bg: #101724;
+    --sidebar-text: #c7d2e2;
+    --sidebar-hover: rgba(62, 207, 142, 0.12);
+    --sidebar-border: #223047;
+
+    --topbar-bg: rgba(13, 18, 25, 0.88);
+    --overlay-color: rgba(3, 6, 10, 0.6);
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+    --shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
+}

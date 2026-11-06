@@ -1,0 +1,54 @@
+/* ventas.css — Complemento de la tabla del historial */
+
+.ventas-acciones {
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.badge--pago {
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: var(--fs-xs);
+}
+
+.estado-cancelada {
+    color: var(--color-text-muted);
+    text-decoration: line-through;
+}
+
+@media (max-width: 768px) {
+    .table thead {
+        display: none;
+    }
+
+    .table tbody tr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px var(--sp-3);
+        padding: var(--sp-3) 0;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .table td {
+        border: 0;
+        padding: 2px 0;
+    }
+
+    .table td::before {
+        content: attr(data-label) ': ';
+        color: var(--color-text-muted);
+        font-weight: var(--fw-semibold);
+    }
+
+    .table .actions-cell {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+    }
+
+    .ventas-acciones {
+        justify-content: flex-start;
+    }
+}

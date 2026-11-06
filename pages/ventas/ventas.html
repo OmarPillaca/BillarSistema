@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="claro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial · Sistema de Billar</title>
+
+    <!-- Aplicación temprana del tema (evita parpadeo al abrir) -->
+    <script>
+        (function () {
+            try {
+                var cfg = JSON.parse(localStorage.getItem('billar:config') || '{}');
+                var tema = cfg && cfg.tema;
+                if (tema !== 'oscuro' && tema !== 'claro') {
+                    tema = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+                        ? 'oscuro' : 'claro';
+                }
+                document.documentElement.setAttribute('data-theme', tema);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'claro');
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/themes.css">
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="ventas.css">
+</head>
+<body data-page="ventas" data-base="../../">
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <main id="main" class="main">
+        <div class="page">
+            <header class="page__header">
+                <div>
+                    <h1 class="page__title">Historial</h1>
+                    <p class="page__subtitle" id="ventas-subtitle">Cargando sesiones…</p>
+                </div>
+            </header>
+
+            <div class="stats-grid" id="ventas-stats">
+                <div class="stat-card stat-card--success">
+                    <span class="stat-card__label">Cobrado</span>
+                    <span class="stat-card__value" id="stat-cobrado">S/ 0.00</span>
+                </div>
+                <div class="stat-card stat-card--info">
+                    <span class="stat-card__label">Ingresos por tiempo</span>
+                    <span class="stat-card__value" id="stat-tiempo">S/ 0.00</span>
+                </div>
+                <div class="stat-card stat-card--warning">
+                    <span class="stat-card__label">Productos</span>
+                    <span class="stat-card__value" id="stat-productos">S/ 0.00</span>
+                </div>
+                <div class="stat-card stat-card--muted">
+                    <span class="stat-card__label">Canceladas / anuladas</span>
+                    <span class="stat-card__value" id="stat-canceladas">0</span>
+                </div>
+            </div>
+
+            <div class="filters-bar">
+                <div class="form-group">
+                    <label class="form-label" for="filtro-desde">Desde</label>
+                    <input class="form-input" id="filtro-desde" type="date">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="filtro-hasta">Hasta</label>
+                    <input class="form-input" id="filtro-hasta" type="date">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="filtro-tipo">Tipo</label>
+                    <select class="form-select" id="filtro-tipo">
+                        <option value="">Todos</option>
+                        <option value="MESA">Mesa</option>
+                        <option value="DIRECTA">Venta directa</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="filtro-estado">Estado</label>
+                    <select class="form-select" id="filtro-estado">
+                        <option value="">Todos</option>
+                        <option value="FINALIZADA">Finalizadas</option>
+                        <option value="CANCELADA">Canceladas / anuladas</option>
+                        <option value="ACTIVA">En curso</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="filtro-metodo">Método de pago</label>
+                    <select class="form-select" id="filtro-metodo">
+                        <option value="">Todos</option>
+                        <option value="EFECTIVO">Efectivo</option>
+                        <option value="YAPE">Yape</option>
+                        <option value="PLIN">Plin</option>
+                        <option value="TARJETA">Tarjeta</option>
+                        <option value="OTRO">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="filtro-mesa">Mesa</label>
+                    <select class="form-select" id="filtro-mesa">
+                        <option value="">Todas</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-wrap" id="ventas-table-wrap">
+                <table class="table" id="ventas-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Mesa</th>
+                            <th class="num">Duración</th>
+                            <th class="num">Tiempo</th>
+                            <th class="num">Productos</th>
+                            <th class="num">Total</th>
+                            <th>Estado</th>
+                            <th>Pago</th>
+                            <th class="actions-cell">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ventas-tbody"></tbody>
+                </table>
+            </div>
+
+            <div class="empty-state hidden" id="ventas-vacio">
+                <div class="empty-state__icon" aria-hidden="true">🧾</div>
+                <p class="empty-state__title" id="ventas-vacio-titulo">Sin sesiones</p>
+                <p class="empty-state__text" id="ventas-vacio-texto">Cuando finalices o canceles sesiones aparecerán aquí.</p>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="ventas.js"></script>
+</body>
+</html>

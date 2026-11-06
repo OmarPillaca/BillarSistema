@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="claro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pruebas de facturación · Sistema de Billar</title>
+
+    <!-- Aplicación temprana del tema (evita parpadeo al abrir) -->
+    <script>
+        (function () {
+            try {
+                var cfg = JSON.parse(localStorage.getItem('billar:config') || '{}');
+                var tema = cfg && cfg.tema;
+                if (tema !== 'oscuro' && tema !== 'claro') {
+                    tema = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+                        ? 'oscuro' : 'claro';
+                }
+                document.documentElement.setAttribute('data-theme', tema);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'claro');
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="pruebas-billing.css">
+</head>
+<body>
+    <main class="tests-page">
+        <header class="tests-header">
+            <h1 class="tests-header__title">Pruebas de facturación</h1>
+            <p class="tests-header__sub">
+                Regla única de cobro por tiempo (<code>js/billing.js</code>) — casos de la sección 17.
+                Todos los casos se ejecutan de verdad al cargar la página.
+            </p>
+            <div id="resumen" class="resumen" aria-live="polite">Ejecutando pruebas…</div>
+        </header>
+
+        <section class="card mb-6">
+            <div class="card__header">
+                <h2 class="card__title">Tarifa S/ 8.00</h2>
+            </div>
+            <div class="card__body">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Minutos</th>
+                                <th>Esperado</th>
+                                <th>Obtenido</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-tarifa-8"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mb-6">
+            <div class="card__header">
+                <h2 class="card__title">Tarifa S/ 10.00</h2>
+            </div>
+            <div class="card__body">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Minutos</th>
+                                <th>Esperado</th>
+                                <th>Obtenido</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-tarifa-10"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mb-6">
+            <div class="card__header">
+                <h2 class="card__title">Tarifa S/ 9.00 (impares y decimales)</h2>
+            </div>
+            <div class="card__body">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Minutos</th>
+                                <th>Esperado</th>
+                                <th>Obtenido</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-tarifa-9"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="card mb-6">
+            <div class="card__header">
+                <h2 class="card__title">Argumentos inválidos (deben lanzar error)</h2>
+            </div>
+            <div class="card__body">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Caso</th>
+                                <th>Llamada</th>
+                                <th>Error lanzado</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-invalidos"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card__header">
+                <h2 class="card__title">Funciones de apoyo (contrato de la sección 7)</h2>
+            </div>
+            <div class="card__body">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Función / caso</th>
+                                <th>Esperado</th>
+                                <th>Obtenido</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-apoyo"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <p class="tests-footer muted small">
+            Esta página no toca <code>localStorage</code> ni los datos del sistema: solo importa
+            <code>js/billing.js</code> y ejecuta sus funciones.
+        </p>
+    </main>
+
+    <script type="module" src="pruebas-billing.js"></script>
+</body>
+</html>
